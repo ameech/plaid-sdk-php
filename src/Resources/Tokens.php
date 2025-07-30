@@ -34,6 +34,7 @@ class Tokens extends AbstractResource
 		array $country_codes,
 		User $user,
 		array $products = [],
+		?array $transactions = [],
 		?string $webhook = null,
 		?string $link_customization_name = null,
 		?AccountFilters $account_filters = null,
@@ -51,6 +52,10 @@ class Tokens extends AbstractResource
 			"user" => $user->toArray(),
 			"products" => $products
 		];
+
+		if ($transactions) {
+			$params["transactions"] = $transactions;
+		}
 
 		if( $webhook ){
 			$params["webhook"] = $webhook;
